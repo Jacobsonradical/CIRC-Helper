@@ -26,15 +26,18 @@ Yeah, as you can see, we don't have many nodes for GPUs. Let's take the **first 
 To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
 
 ```bash
--p gpu -c 24 -t 06:00:00 --mem=62gb --gres=gpu:2 --constraint="E52695v2&K20X"
+-p gpu -t 06:00:00 --constraint="E52695v2&K20X"
 ```
-It tells the system you want GPU, 24 cores, 6 hours, 62 GB CPU RAM, 2 GPU and **importantly** Tesla K20Xm only. The system is going to then assign you into the node that has this GPU, which means one of the 13 nodes in the first row. Therefore, if you need GPU computing, **specifying the GPU constraints** is important. 
+It tells the system you want
+1. **gpu partition** (so for example, if you want to **debug** partition, you do *-p debug*)
+2. 6 hours of time
+3. The CPU + GPU combination stated in the last column of the firs row.
 
-Of course, you don't need to request this much CPU RAM or Core, but the node does not partially assign you resources. You are assigned to the node, so if you are assigned to this specific node, you own these RAMs/Cores even if you request less than that.
+The system is going to then assign you into the node that has this GPU, which means one of the 13 nodes in the first row. Therefore, **specifying the constraints** is the key.  You are assigned to the node, and you own these RAMs/Cores even if you request less than what the node has. So requesting for RAM/Core is useless. 
 
-To request, say, second to the last row for two days, again all other options do not matter that much, constraint matter:
+For those resources that have only one node, you can simply **enforce** the node. For example, the third to the last row for 2 days:
 ```bash
--p gpu -c 24 -t 2-00:00:00 --mem=62gb --gres=gpu:2 --constraint="Gold6330&A100"
+-p gpu -t 2-00:00:00 --nodelist=bhg0050
 ```
 
 ### How long can you own:

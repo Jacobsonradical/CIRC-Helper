@@ -49,5 +49,5 @@ module load python3/3.11.0
 ### Python venv
 ```bash
 python3 -m venv ~/Documents/myvenv/daily
-'''
+```
 

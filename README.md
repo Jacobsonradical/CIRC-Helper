@@ -30,6 +30,13 @@ To request, in the request window, ignore everything else, directly put the foll
 ```
 It tells the system you want GPU, 24 cores, 6 hours, 62 GB CPU RAM, 2 GPU and **importantly** Tesla K20Xm only. The system is going to then assign you into the node that has this GPU, which means one of the 13 nodes in the first row. Therefore, if you need GPU computing, **specifying the GPU constraints** is important. 
 
+Of course, you don't need to request this much CPU RAM or Core, but the node does not partially assign you resources. You are assigned to the node, so if you are assigned to this specific node, you own these RAMs/Cores even if you request less than that.
+
+### How long can you own:
+1. Go to the same link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
+2. At the very above you can see this:
+![image](https://github.com/user-attachments/assets/fcd89fea-2bfc-452b-a311-c74f3172a7a5)
+3. It tells you the maximal amount of time you can use. For example, for GPU nodes, you have maximal 5 days. 
 
 ### Python version
 The default python version should be 3.6.x, which is really low. However, the system does have Python 3.11. To unload the current one and load a new one, use:

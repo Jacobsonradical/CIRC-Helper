@@ -11,7 +11,25 @@ The best way to access this shit is using JupyterHub. I know, you can be really 
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.
 3. Log in.
-4. You have a request window to start a session. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can fuck around.
+4. You have a request window to start a session as follows. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can fuck around.
+![image](https://github.com/user-attachments/assets/ad3bffcf-31c6-4f45-a109-3771d8ca412e)
+
+
+### How to request session:
+Okay here is the hardest part.
+1. Go to this link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
+2. You can see a bunch of these things: ![image](https://github.com/user-attachments/assets/142cd412-b250-46af-bb20-4f337abef652)
+3. Click one, say, I click **gpu**:![image](https://github.com/user-attachments/assets/98acb67a-5439-449c-a319-6bd0e2eaea3d)
+
+Yeah, as you can see, we don't have many nodes for GPUs. Let's take the **first row** as an example. It means, we have 12 nodes, and each node contains 24 cores, 62GB CPU RAM, 2 Tesla K20Xm GPUs (I don't even know why we provide this, this costs about 200 dollars nowadays). 
+
+To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
+
+```bash
+-p gpu -c 24 -t 06:00:00 --mem=62gb --gres=gpu:2 --constraint="E52695v2&K20X"
+```
+It tells the system you want GPU, 24 cores, 6 hours, 62 GB CPU RAM, 2 GPU and **importantly** Tesla K20Xm only. The system is going to then assign you into the node that has this GPU, which means one of the 13 nodes in the first row. Therefore, if you need GPU computing, **specifying the GPU constraints** is important. 
+
 
 ### Python version
 The default python version should be 3.6.x, which is really low. However, the system does have Python 3.11. To unload the current one and load a new one, use:

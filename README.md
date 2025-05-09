@@ -50,7 +50,7 @@ To request, say, second to the last row for two days, again all other options do
   
 </div>
 
-Okay, I understand that you may like this, but we have to. JupyterHab also provides terminal, but it is really slow. 
+Okay, I understand that you may not like this, but we have to. JupyterHab also provides terminal, but it is really slow. 
 
 ### How to connect
 ```bash
@@ -81,4 +81,9 @@ You cannot install *ssl* because it requires **sudo**.
 ```bash
 python3 -m venv ~/Documents/myvenv/daily
 ```
+
+```bash
+source ~/Documents/myvenv/daily/bin/activate
+```
+
 

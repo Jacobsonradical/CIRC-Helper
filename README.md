@@ -39,8 +39,13 @@ Of course, you don't need to request this much CPU RAM or Core, but the node doe
 3. It tells you the maximal amount of time you can use. For example, for GPU nodes, you have maximal 5 days. 
 
 ### Python version
-The default python version should be 3.6.x, which is really low. However, the system does have Python 3.11. To unload the current one and load a new one, use:
+The default python version should be 3.6.x, which is really low. However, the system does have other versions. You can see them by running:
+```bash
+module avail python3
+```
+![image](https://github.com/user-attachments/assets/b805657f-8619-4dc3-89a3-1192d22bf5bf)
 
+You can unload the current python and load a new python version with:
 ```bash
 module unload python3
 module load python3/3.11.0

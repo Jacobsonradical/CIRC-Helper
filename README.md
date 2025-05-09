@@ -1,5 +1,5 @@
 # UrCirc
-The Center for Research Integrated Computing (CIRC) of UR is so fucking hard to use due to the significant lack of proper documentation and examples. **My man, no one has this much time participating your 3-hour long training session for sevearl weeks. Just provide good documentation and example, so people can start working on it.**
+The Center for Research Integrated Computing (CIRC) of UR is so fucking hard to use due to the significant lack of proper documentation and examples. **My man, no one has this much time participating your 3-hour long training session for weeks, especially people who really need are PhDs, who are typically really busy. Just provide good documentation and example, so people can start working on it.**
 
 To this end, I am creating this repostiroy to store necessary commands and tips for everyone to start using this shit. 
 

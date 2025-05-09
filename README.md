@@ -51,10 +51,12 @@ module unload python3
 module load python3/3.11.10
 ```
 
-Please simply load 3.11.10. This is the only version I tested that contains *ssl* library which you need for *pip*. For other python version, run the following code to see if you have *ssl*
+Python 3.11.10 is the only version I tested that contains *ssl* library which you need for *pip*. I am pretty sure Python 3.11.0 does not have *ssl* library. For other python version, run the following code to see if you have *ssl*
 ```bash
 python3 -c "import ssl"
 ```
+
+You cannot install *ssl* because it requires **sudo**. 
 
 ### Python venv
 ```bash

@@ -48,7 +48,12 @@ module avail python3
 You can unload the current python and load a new python version with:
 ```bash
 module unload python3
-module load python3/3.11.0
+module load python3/3.11.10
+```
+
+Please simply load 3.11.10. This is the only version I tested that contains *ssl* library which you need for *pip*. For other python version, run the following code to see if you have *ssl*
+```bash
+python3 -c "import ssl"
 ```
 
 ### Python venv

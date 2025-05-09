@@ -1,7 +1,7 @@
 # UrCirc
 The Center for Research Integrated Computing (CIRC) of UR is so fucking hard to use due to the significant lack of proper documentation and examples. **My man, no one has this much time participating your 3-hour long training session for sevearl weeks. Just provide good documentation and example, so people can start working on it.**
 
-To this end, I am creating this repostiroy to store necessary commands and tips for you to start using this shit. 
+To this end, I am creating this repostiroy to store necessary commands and tips for everyone to start using this shit. 
 
 ### Best Way to Access
 The best way to access this shit is using JupyterHub. 

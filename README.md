@@ -45,3 +45,9 @@ The default python version should be 3.6.x, which is really low. However, the sy
 module unload python3
 module load python3/3.11.0
 ```
+
+### Python venv
+```bash
+python3 -m venv ~/Documents/myvenv/daily
+'''
+

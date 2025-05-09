@@ -7,7 +7,7 @@ To this end, I am creating this repostiroy to store necessary commands and tips 
 Use this link: https://registration.circ.rochester.edu/account
 
 ### Best Way to Access
-The best way to access this shit is using JupyterHub. I know, you can be really smart and using terminal, but JupyterHub also provides terminal. Anyways, just use JupyterHub. 
+The best way to access this shit is using JupyterHub.
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.
 3. Log in.
@@ -32,11 +32,30 @@ It tells the system you want GPU, 24 cores, 6 hours, 62 GB CPU RAM, 2 GPU and **
 
 Of course, you don't need to request this much CPU RAM or Core, but the node does not partially assign you resources. You are assigned to the node, so if you are assigned to this specific node, you own these RAMs/Cores even if you request less than that.
 
+To request, say, second to the last row for two days, again all other options do not matter that much, constraint matter:
+```bash
+-p gpu -c 24 -t 2-00:00:00 --mem=62gb --gres=gpu:2 --constraint="Gold6330&A100"
+```
+
 ### How long can you own:
 1. Go to the same link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
 2. At the very above you can see this:
 ![image](https://github.com/user-attachments/assets/fcd89fea-2bfc-452b-a311-c74f3172a7a5)
 3. It tells you the maximal amount of time you can use. For example, for GPU nodes, you have maximal 5 days. 
+
+
+<div align="center">
+  
+## Initial Setup Using Terminal
+  
+</div>
+
+Okay, I understand that you may like this, but we have to. JupyterHab also provides terminal, but it is really slow. 
+
+### How to connect
+```bash
+ssh YourNetIDHere@bluehive.circ.rochester.edu
+```
 
 ### Python version
 The default python version should be 3.6.x, which is really low. However, the system does have other versions. You can see them by running:

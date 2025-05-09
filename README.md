@@ -7,7 +7,7 @@ To this end, I am creating this repostiroy to store necessary commands and tips 
 Use this link: https://registration.circ.rochester.edu/account
 
 ### Best Way to Access
-The best way to access this shit is using JupyterHub. 
+The best way to access this shit is using JupyterHub. I know, you can be really smart and using terminal, but JupyterHub also provides terminal. Anyways, just use JupyterHub. 
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.
 3. Log in.

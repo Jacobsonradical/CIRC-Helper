@@ -115,9 +115,9 @@ Then, install *ipykernel*
 pip install ipykernel
 ```
 
-Next, run the following line with your own modificvation
+Next, run the following line with your own modification.
 ```bash
 python -m ipykernel install --user --name=umap --display-name="Python3.12.4-b1 (UMAP)"
 ```
-
+You can customize the *--display-name* to whatever you like. However, keep the *--name* to the folder name before */bin/activate*. For example, if your activate virtual environment by the code *source /some/directory/to/hello/bin/activate*, then you should use *--name=hello*.
 

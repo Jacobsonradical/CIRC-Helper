@@ -23,21 +23,18 @@ Okay here is the hardest part.
 
 Yeah, as you can see, we don't have many nodes for GPUs. Let's take the **first row** as an example. It means, we have 12 nodes, and each node contains 24 cores, 62GB CPU RAM, 2 Tesla K20Xm GPUs (I don't even know why we provide this, this costs about 200 dollars nowadays). 
 
-To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
-
+How this thing works is that the system assigns you **node**, not specific resources. Hence, simply request the node that is >= what you need. To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
 ```bash
--p gpu -t 06:00:00 --constraint="E52695v2&K20X"
+-p gpu -t 2-00:00:00 --nodelist=bhg[0012-0018,0020,0022,0024-0027]
 ```
 It tells the system you want
 1. **gpu partition** (so for example, if you want to **debug** partition, you do *-p debug*)
-2. 6 hours of time
-3. The CPU + GPU combination stated in the last column of the firs row.
+2. 2 hours of time
+3. Any of the node in the node list. 
 
-The system is going to then assign you into the node that has this GPU, which means one of the 13 nodes in the first row. Therefore, **specifying the constraints** is the key.  You are assigned to the node, and you own these RAMs/Cores even if you request less than what the node has. So requesting for RAM/Core is useless. 
-
-For those resources that have only one node, you can simply **enforce** the node. For example, the third to the last row for 2 days:
+Another example: 
 ```bash
--p gpu -t 2-00:00:00 --nodelist=bhg0050
+-p preempt -t 2-00:00:00 --nodelist=bhg0059
 ```
 
 ### How long can you own:

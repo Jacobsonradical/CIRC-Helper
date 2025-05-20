@@ -86,6 +86,7 @@ source ~/myvenv/umap/bin/activate
 ```
 
 ### Package Install
+The followings are package I need to do the project using UMAP. You can feel free to install anything you want. 
 ```bash
 pip install pyarrow
 pip install polars

@@ -70,23 +70,18 @@ module avail python3
 You can unload the current python and load a new python version with:
 ```bash
 module unload python3
-module load python3/3.11.10
+module load python3/3.12.4/b1
 ```
 
-Python 3.11.10 is the only version I tested that contains *ssl* library which you need for *pip*. I am pretty sure Python 3.11.0 does not have *ssl* library. For other python version, run the following code to see if you have *ssl*
-```bash
-python3 -c "import ssl"
-```
-
-You cannot install *ssl* because it requires **sudo**. 
+Python 3.12.4 is the only version I confirmed with CIRC that contains *ssl* library which you need for *pip*. You cannot install *ssl* because it requires **sudo**. 
 
 ### Python venv
 ```bash
-python3 -m venv ~/Documents/myvenv/daily
+python3 -m venv ~/myvenv/umap
 ```
 
 ```bash
-source ~/Documents/myvenv/daily/bin/activate
+source ~myvenv/umap/bin/activate
 ```
 
 

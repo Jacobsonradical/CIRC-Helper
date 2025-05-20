@@ -92,7 +92,7 @@ pip install pyarrow
 pip install polars
 pip install pandas
 pip install atomicwrites
-pip install matplotlib
+pip install "matplotlib<3.10"
 pip install "numpy >= 1.23"
 pip install "scipy >= 1.3.1"
 pip install "scikit-learn >= 1.6"

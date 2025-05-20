@@ -78,9 +78,6 @@ Python 3.12.4 is the only version I confirmed with CIRC that contains *ssl* libr
 ### Python venv
 ```bash
 python3 -m venv ~/myvenv/umap
-```
-
-```bash
 source ~myvenv/umap/bin/activate
 ```
 

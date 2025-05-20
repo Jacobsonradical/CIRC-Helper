@@ -101,3 +101,23 @@ pip install "pynndescent >= 0.5"
 pip install tqdm
 pip install umap-learn
 ```
+
+### Connect the virtual envirnoment to JupyerLab
+You have to do this or you cannot use this environment for your Jupyter session. 
+
+First, ensure that your virtual envirnoment is runnning:
+```bash
+source ~/myvenv/umap/bin/activate
+```
+
+Then, install *ipykernel*
+```bash
+pip install ipykernel
+```
+
+Next, run the following line with your own modificvation
+```bash
+python -m ipykernel install --user --name=umap --display-name="Python3.12.4-b1 (UMAP)"
+```
+
+

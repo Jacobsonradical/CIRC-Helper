@@ -83,4 +83,7 @@ python3 -m venv ~/myvenv/umap
 source ~/myvenv/umap/bin/activate
 ```
 
-
+### Python venv
+```bash
+pip install pyarrow polars pandas atomicwrites 
+```

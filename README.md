@@ -83,7 +83,17 @@ python3 -m venv ~/myvenv/umap
 source ~/myvenv/umap/bin/activate
 ```
 
-### Python venv
+### Package Install
 ```bash
-pip install pyarrow polars pandas atomicwrites 
+pip install pyarrow
+pip install polars
+pip install pandas
+pip install atomicwrites
+pip install matplotlib
+pip install "numpy >= 1.23"
+pip install "scipy >= 1.3.1"
+pip install "scikit-learn >= 1.6"
+pip install "numba >= 0.51.2"
+pip install "pynndescent >= 0.5"
+pip install tqdm
 ```

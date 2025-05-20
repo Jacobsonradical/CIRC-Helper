@@ -121,3 +121,17 @@ python -m ipykernel install --user --name=umap --display-name="Python3.12.4-b1 (
 ```
 You can customize the *--display-name* to whatever you like. However, keep the *--name* to the folder name before */bin/activate*. For example, if your activate virtual environment by the code *source /some/directory/to/hello/bin/activate*, then you should use *--name=hello*.
 
+Now, go your JupyterLab, refresh your browser. You should see something like this. As you can see, the "myvenv" folder is there. 
+![Pasted image](https://github.com/user-attachments/assets/5377785e-11b5-401e-ad1a-a406129618c4)
+
+Next, click the "New" botton on the top right corner, scroll down, you should see your environment, like mine:
+![Pasted image (2)](https://github.com/user-attachments/assets/d4c55ef3-e4ec-4d6f-9433-a0e1b17a3676)
+
+*If you want to uninstall this setting from Jupyter*:
+```bash
+jupyter kernelspec uninstall umap
+```
+Change *umap* to anything you put for *--name*. For example, if you put *--name=hello*, then replace *umap* with *hello*.
+
+
+

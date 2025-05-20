@@ -96,4 +96,5 @@ pip install "scikit-learn >= 1.6"
 pip install "numba >= 0.51.2"
 pip install "pynndescent >= 0.5"
 pip install tqdm
+pip install umap-learn
 ```

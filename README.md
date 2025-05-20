@@ -11,7 +11,7 @@ The best way to access this shit is using JupyterHub.
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.
 3. Log in.
-4. You have a request window to start a session as follows. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can fuck around.
+4. You have a request window to start a session as follows. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can play around.
 ![image](https://github.com/user-attachments/assets/ad3bffcf-31c6-4f45-a109-3771d8ca412e)
 
 

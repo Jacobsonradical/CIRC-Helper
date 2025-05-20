@@ -76,9 +76,11 @@ module load python3/3.12.4/b1
 Python 3.12.4 is the only version I confirmed with CIRC that contains *ssl* library which you need for *pip*. You cannot install *ssl* because it requires **sudo**. 
 
 ### Python venv
+Here is an example of creating an virtual environment for a project mainly using UMAP library. As you don't have **sudo**, packages like *pipx* and *virtualenv* can't be installed. This is why I am using the python-inherited virtual environment creation tool. 
 ```bash
 python3 -m venv ~/myvenv/umap
 ```
+Use the following line to activate your virtual environment before installing any python package. 
 ```bash
 source ~/myvenv/umap/bin/activate
 ```

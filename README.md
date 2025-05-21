@@ -72,7 +72,7 @@ source ~/myvenv/umap/bin/activate
 ```
 
 ### Package Install
-The followings are package I need to do the project using UMAP. You can feel free to install anything you want. 
+The followings are package I need to do the project using UMAP and HDBSCAN. You can feel free to install anything you want. 
 ```bash
 pip install pyarrow
 pip install polars
@@ -86,6 +86,7 @@ pip install "numba >= 0.51.2"
 pip install "pynndescent >= 0.5"
 pip install tqdm
 pip install umap-learn
+pip install hdbscan
 ```
 
 

@@ -72,11 +72,11 @@ source ~/myvenv/umap/bin/activate
 ```
 
 ### Load GCC Compiler 
-Many high performance Python package relies on C which requires GCC compiler to install so you have to load it as well. 
-
-
-
-
+Many high performance Python package relies on C which requires GCC compiler to install so you have to load it as well. I only tested the following version of the GCC compiler.
+```bash
+module unload gcc
+module load gcc/13.2.0/b1
+```
 
 ### Package Install
 The followings are package I need to do the project using UMAP and HDBSCAN. You can feel free to install anything you want. 
@@ -94,6 +94,7 @@ pip install "pynndescent >= 0.5"
 pip install tqdm
 pip install umap-learn
 pip install hdbscan
+pip install git+https://github.com/Jacobsonradical/rabbitlord.git
 ```
 
 ### Two Storage Sections

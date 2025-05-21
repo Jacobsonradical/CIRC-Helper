@@ -6,6 +6,14 @@ To this end, I am creating this repostiroy to store necessary commands and tips 
 ### Register Account:
 Use this link: https://registration.circ.rochester.edu/account
 
+### Two Ways to Use:
+There are primarily two ways to use CIRC:
+1. Using Terminal and SLURM job scheduler.
+   Pro: Really transparent, and you can simply just work in a terminal like what you have done in all other regular servers.
+   Con: Some learning curve for SLURM, easy to run scripts in Python/Java etc but hard to play with R unless you are really good at using R script (but I think most people now use R Studio).
+
+
+
 ### Best Way to Access
 The best way to access this shit is using JupyterHub.
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/

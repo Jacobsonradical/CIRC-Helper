@@ -12,8 +12,8 @@ There are primarily two ways to use CIRC:
 
    Pro:
    - Transparent and flexible: you can work just like on any other remote server.
-   - Great for running scripts in Python, Java, etc.
-   - After creating virtual environment, you don't need spend anytime to connect to Jupyter kernel
+   - Great for running scripts in Python (I am not sure about C because you need C compiler and I don't know if they have it)
+   - After creating virtual environment, you don't need spend anytime to connect it to Jupyter kernel
    - You have to set up your Terminal anyways, and it is a good pratice to upload/download files via *ssh*
   
    Con:
@@ -39,7 +39,7 @@ There are primarily two ways to use CIRC:
   
 </div>
 
-Okay, I understand that you may not like this, but we have to. JupyterHab also provides terminal, but it is really slow. 
+This is something you have to do because a virtual envinroment must be created. 
 
 ### How to connect
 ```bash

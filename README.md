@@ -163,12 +163,20 @@ To run a SLURM schedule, you need to create a *.slurm* file. Let us see an examp
 ```
 
 
+### Restrictions to use (CPUs)
+Polars does not support those CPUs that do not support avx2, fma, bmi1, bmi2, lzcnt, movbe. Bascially, these CPUs are really outdated (pre 2015 or something), and they are really cheap. However, half of the CPUs offered by CIRC are these CPUs. **I don't know about other libraries, but if you are not doing really basic stuff, perhaps avoid these CPUs as well, or at least, you know what to possibly blame when your code has a problem.**
 
+Instead of listing restrictions that should be avoided, **I list the restrctions you should prefer**. I list them here for each partition (because you need to request by partition anyways):
 
-
-
-
-
+- **debug**: None
+- **gpu**: E52695v4, Gold6140, Gold6130, Gold6330, Gold6226R
+- **gpu-debug**: None
+- **gpu-interactive**: E52695v4
+- **highmem**: None
+- **interactive**: E52695v4
+- **preempt**: E52695v4, E52699v4, E2650v4, Gold6148, Gold6126, epyc7501, Gold6148, Gold6248, Platinum8268, Platinum8268, Gold6330, Gold6330, 4114, Gold6230, 4214R, AMD7413, Gold6338
+- **standard**: E52695v4, Gold6330
+- **visual**: None
 
 
 ### Best Way to Access

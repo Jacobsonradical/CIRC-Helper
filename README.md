@@ -9,48 +9,29 @@ Use this link: https://registration.circ.rochester.edu/account
 ### Two Ways to Use:
 There are primarily two ways to use CIRC:
 1. Using Terminal and SLURM job scheduler.
-   Pro: Really transparent, and you can simply just work in a terminal like what you have done in all other regular servers.
-   Con: Some learning curve for SLURM, easy to run scripts in Python/Java etc but hard to play with R unless you are really good at using R script (but I think most people now use R Studio).
 
+   Pro:
+   - Transparent and flexible: you can work just like on any other remote server.
+   - Great for running scripts in Python, Java, etc.
+   - After creating virtual environment, you don't need spend anytime to connect to Jupyter kernel
+   - You have to set up your Terminal anyways, and it is a good pratice to upload/download files via *ssh*
+  
+   Con:
+   - Bad experience if you never used server and worked in Terminal.
+   - Learning curve for SLURM for anyone who never used computing cluster scheduler (meaning all of us).
+   - Hard to use R without RStudio or R in JupyterLab
+   - Have to write a script first and test it several times locally. 
 
+2. Using JupyterLab.
 
-### Best Way to Access
-The best way to access this shit is using JupyterHub.
-1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
-2. Click the "JupyterHub" link in the first sentence.
-3. Log in.
-4. You have a request window to start a session as follows. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can play around.
-![image](https://github.com/user-attachments/assets/ad3bffcf-31c6-4f45-a109-3771d8ca412e)
-
-
-### How to request session:
-Okay here is the hardest part.
-1. Go to this link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
-2. You can see a bunch of these things: ![image](https://github.com/user-attachments/assets/142cd412-b250-46af-bb20-4f337abef652)
-3. Click one, say, I click **gpu**:![image](https://github.com/user-attachments/assets/98acb67a-5439-449c-a319-6bd0e2eaea3d)
-
-Yeah, as you can see, we don't have many nodes for GPUs. Let's take the **first row** as an example. It means, we have 12 nodes, and each node contains 24 cores, 62GB CPU RAM, 2 Tesla K20Xm GPUs (I don't even know why we provide this, this costs about 200 dollars nowadays). 
-
-How this thing works is that the system assigns you **node**, not specific resources. Hence, simply request the node that is >= what you need. To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
-```bash
--p gpu -t 2-00:00:00 --nodelist=bhg[0012-0018,0020,0022,0024-0027]
-```
-It tells the system you want
-1. **gpu partition** (so for example, if you want to **debug** partition, you do *-p debug*)
-2. 2 hours of time
-3. Any of the node in the node list. 
-
-Another example: 
-```bash
--p preempt -t 2-00:00:00 --nodelist=bhg0059
-```
-
-### How long can you own:
-1. Go to the same link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
-2. At the very above you can see this:
-![image](https://github.com/user-attachments/assets/fcd89fea-2bfc-452b-a311-c74f3172a7a5)
-3. It tells you the maximal amount of time you can use. For example, for GPU nodes, you have maximal 5 days. 
-
+   Pro:
+   - Easy to use. No need to learn Terminal or SLURM.
+   - Most people are used to working in Jupyter Notebook.
+   - Easy for R. 
+  
+   Con:
+   - You have to set up your Terminal anyways.
+   - Kernel dead problem is serious when connect your own environment to JupyterLab kernel. CIRC allows really low flexibility, so it is also hard to debug it. 
 
 <div align="center">
   
@@ -106,6 +87,72 @@ pip install "pynndescent >= 0.5"
 pip install tqdm
 pip install umap-learn
 ```
+
+
+
+
+
+
+
+### Best Way to Access
+The best way to access this shit is using JupyterHub.
+1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
+2. Click the "JupyterHub" link in the first sentence.
+3. Log in.
+4. You have a request window to start a session as follows. I will talk about it in detail later. But once you requested your session, it will spawn a JupyterLab, and then you can play around.
+![image](https://github.com/user-attachments/assets/ad3bffcf-31c6-4f45-a109-3771d8ca412e)
+
+
+### How to request session:
+Okay here is the hardest part.
+1. Go to this link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
+2. You can see a bunch of these things: ![image](https://github.com/user-attachments/assets/142cd412-b250-46af-bb20-4f337abef652)
+3. Click one, say, I click **gpu**:![image](https://github.com/user-attachments/assets/98acb67a-5439-449c-a319-6bd0e2eaea3d)
+
+Yeah, as you can see, we don't have many nodes for GPUs. Let's take the **first row** as an example. It means, we have 12 nodes, and each node contains 24 cores, 62GB CPU RAM, 2 Tesla K20Xm GPUs (I don't even know why we provide this, this costs about 200 dollars nowadays). 
+
+How this thing works is that the system assigns you **node**, not specific resources. Hence, simply request the node that is >= what you need. To request, in the request window, ignore everything else, directly put the following command in the **additional option**:
+```bash
+-p gpu -t 2-00:00:00 --nodelist=bhg[0012-0018,0020,0022,0024-0027]
+```
+It tells the system you want
+1. **gpu partition** (so for example, if you want to **debug** partition, you do *-p debug*)
+2. 2 hours of time
+3. Any of the node in the node list. 
+
+Another example: 
+```bash
+-p preempt -t 2-00:00:00 --nodelist=bhg0059
+```
+
+### How long can you own:
+1. Go to the same link: https://info.circ.rochester.edu/#BlueHive/Compute_Nodes/
+2. At the very above you can see this:
+![image](https://github.com/user-attachments/assets/fcd89fea-2bfc-452b-a311-c74f3172a7a5)
+3. It tells you the maximal amount of time you can use. For example, for GPU nodes, you have maximal 5 days. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Connect the virtual envirnoment to JupyerLab
 You have to do this or you cannot use this environment for your Jupyter session. 

@@ -89,7 +89,7 @@ pip install umap-learn
 pip install hdbscan
 ```
 
-### Upload Stuff
+### Two Storage Sections
 You have two stroage spaces. The first one is in 
 ```bash
 /home/YourNetIDHere
@@ -103,6 +103,23 @@ The second one is in
 Here, you have 200 GB spaces, so your scripts/data should be here. Note that this section is not backed up by CIRC, so after computing, download them immeidately. 
 
 
+### How to upload
+The good thing about CIRC is that they have *rsync*, so please also install *rsync* in your computer. To upload, you want to use the following scripts
+
+If you only want to upload a file
+```bash
+rsync -avz --info=progress2 -e ssh local/file/path sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+```
+
+If you want to upload the whole folder
+```bash
+rsync -avz --info=progress2 -e ssh local/folder/directory sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+```
+
+If you want to upload all the things within a folder (but the folder is not moved entirely)
+```bash
+rsync -avz --info=progress2 -e ssh local/folder/directory/ sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+```
 
 
 ### Best Way to Access

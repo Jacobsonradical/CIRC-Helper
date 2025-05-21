@@ -89,8 +89,18 @@ pip install umap-learn
 pip install hdbscan
 ```
 
+### Upload Stuff
+You have two stroage spaces. The first one is in 
+```bash
+/home/YourNetIDHere
+```
+This only has 20 GB spaces, so I suggest not to upload anything here. This directory only contains your virtual environments.
 
-
+The second one is in
+```bash
+/scratch/YourNetIDHere
+```
+Here, you have 200 GB spaces, so your scripts/data should be here. Note that this section is not backed up by CIRC, so after computing, download them immeidately. 
 
 
 

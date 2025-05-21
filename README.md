@@ -116,14 +116,55 @@ If you want to upload the whole folder
 rsync -avz --info=progress2 -e ssh local/folder/directory YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
 ```
 
-If you want to upload all the things within a folder (but the folder is not moved entirely)
+If you want to upload all the things within a folder
 ```bash
 rsync -avz --info=progress2 -e ssh local/folder/directory/ YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
 ```
 
+### How to download
+If you only want to download a file
+```bash
+rsync -avz --info=progress2 -e ssh YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/your/filepath /local/directory
+```
+
+If you want to download the whole folder
+```bash
+rsync -avz --info=progress2 -e ssh YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/your/directory /local/directory
+```
+
+If you want to download all the things within a folder
+```bash
+rsync -avz --info=progress2 -e ssh YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/your/directory/ /local/directory
+```
+
+<div align="center">
+  
+## SLURM Schedule 
+  
+</div>
+
+To run a SLURM schedule, you need to create a *.slurm* file. Let us see an example of such a file:
+```bash
+#!/bin/bash
+#SBATCH -p gpu
+#SBATCH -t 2-00:00:00
+#SBATCH --nodelist=bhg[0012-0018,0020,0022,0024-0027]
+#SBATCH --job-name=run123
+#SBATCH --output=logs/run123_%j.out
+#SBATCH --error=logs/run123_%j.err
+```
+
+
+
+
+
+
+
+
+
 
 ### Best Way to Access
-The best way to access this shit is using JupyterHub.
+The best way to access this is using JupyterHub.
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.
 3. Log in.

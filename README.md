@@ -12,9 +12,9 @@ There are primarily two ways to use CIRC:
 
    Pro:
    - Transparent and flexible: you can work just like on any other remote server.
-   - Great for running scripts in Python (I am not sure about C because you need C compiler and I don't know if they have it)
-   - After creating virtual environment, you don't need spend anytime to connect it to Jupyter kernel
-   - You have to set up your Terminal anyways, and it is a good pratice to upload/download files via *ssh*
+   - Great for running scripts
+   - After creating virtual environment, you don't need to connect it to Jupyter kernel
+   - You have to set up your Terminal anyways, and it is a good pratice to upload/download files via *ssh*.
   
    Con:
    - Bad experience if you never used server and worked in Terminal.
@@ -31,7 +31,8 @@ There are primarily two ways to use CIRC:
   
    Con:
    - You have to set up your Terminal anyways.
-   - Kernel dead problem is serious when connect your own environment to JupyterLab kernel. CIRC allows really low flexibility, so it is also hard to debug it. 
+   - Kernel dead problem is serious when connect your own environment to JupyterLab kernel. CIRC allows really low flexibility, so it is also hard to debug it.
+   - Unclear waiting time and duration. 
 
 <div align="center">
   
@@ -72,7 +73,7 @@ source ~/myvenv/umap/bin/activate
 ```
 
 ### Load GCC Compiler 
-Many high performance Python package relies on C which requires GCC compiler to install so you have to load it as well. I only tested the following version of the GCC compiler.
+Many high performance Python packages rely on C which requires GCC compiler to install so you have to load it as well. I only tested the following version of the GCC compiler.
 ```bash
 module unload gcc
 module load gcc/13.2.0/b1
@@ -164,9 +165,9 @@ To run a SLURM schedule, you need to create a *.slurm* file. Let us see an examp
 
 
 ### Restrictions to use (CPUs)
-Polars does not support those CPUs that do not support avx2, fma, bmi1, bmi2, lzcnt, movbe. Bascially, these CPUs are really outdated (pre 2015 or something), and they are really cheap. However, half of the CPUs offered by CIRC are these CPUs. **I don't know about other libraries, but if you are not doing really basic stuff, perhaps avoid these CPUs as well, or at least, you know what to possibly blame when your code has a problem.**
+Polars does not support those CPUs that do not support avx2, fma, bmi1, bmi2, lzcnt, movbe. Bascially, these CPUs are really outdated (pre 2015 or something), and they are really cheap. **I don't know about other libraries, but if you are not doing really basic stuff, perhaps avoid these CPUs as well, or at least, you know what to possibly blame when your code has a problem.**
 
-Instead of listing restrictions that should be avoided, **I list the restrctions you should prefer**. I list them here for each partition (because you need to request by partition anyways):
+Instead of listing restrictions that should be avoided, **I list the restrctions you should prefer**. I list them here for each partition, because you need to request by partition anyways:
 
 - **debug**: None
 - **gpu**: E52695v4, Gold6140, Gold6130, Gold6330, Gold6226R

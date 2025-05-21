@@ -46,7 +46,7 @@ This is something you have to do because a virtual envinroment must be created.
 ssh YourNetIDHere@bluehive.circ.rochester.edu
 ```
 
-### Python version
+### Load Python
 The default python version should be 3.6.x, which is really low. However, the system does have other versions. You can see them by running:
 ```bash
 module avail python3
@@ -70,6 +70,13 @@ Use the following line to activate your virtual environment before installing an
 ```bash
 source ~/myvenv/umap/bin/activate
 ```
+
+### Load GCC Compiler 
+Many high performance Python package relies on C which requires GCC compiler to install so you have to load it as well. 
+
+
+
+
 
 ### Package Install
 The followings are package I need to do the project using UMAP and HDBSCAN. You can feel free to install anything you want. 

@@ -108,17 +108,17 @@ The good thing about CIRC is that they have *rsync*, so please also install *rsy
 
 If you only want to upload a file
 ```bash
-rsync -avz --info=progress2 -e ssh local/file/path sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+rsync -avz --info=progress2 -e ssh local/file/path YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
 ```
 
 If you want to upload the whole folder
 ```bash
-rsync -avz --info=progress2 -e ssh local/folder/directory sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+rsync -avz --info=progress2 -e ssh local/folder/directory YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
 ```
 
 If you want to upload all the things within a folder (but the folder is not moved entirely)
 ```bash
-rsync -avz --info=progress2 -e ssh local/folder/directory/ sli73@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
+rsync -avz --info=progress2 -e ssh local/folder/directory/ YourNetIDHere@bluehive.circ.rochester.edu:/scratch/YourNetIDHere/
 ```
 
 

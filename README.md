@@ -95,6 +95,7 @@ pip install "pynndescent >= 0.5"
 pip install tqdm
 pip install umap-learn
 pip install hdbscan
+pip install fast_hdbscan
 pip install git+https://github.com/Jacobsonradical/rabbitlord.git
 ```
 

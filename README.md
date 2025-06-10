@@ -181,7 +181,7 @@ Instead of listing restrictions that should be avoided, **I list the restrctions
 - **visual**: None
 
 
-### Best Way to Access
+### JupyterHub --- Under construction and testing, take them with a grain of salt.
 The best way to access this is using JupyterHub.
 1. Go to: https://info.circ.rochester.edu/#Web_Applications/JupyterHub/
 2. Click the "JupyterHub" link in the first sentence.

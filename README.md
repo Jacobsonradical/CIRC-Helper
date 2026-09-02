@@ -171,8 +171,8 @@ Home is shared across every node, so a virtual environment you install from one 
 
 ```bash
 # partitions, with memory in GB instead of SLURM's MB
+printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
 sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
-  BEGIN { printf "%-18s %5s %14s %6s %10s\n", "PARTITION","NODES","TIMELIMIT","CPUS","MEMORY" }
   { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
     printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
 sacctmgr -np show assoc user=$USER format=Account,Partition,QOS
@@ -319,8 +319,8 @@ A **partition** is a named group of compute nodes with its own rules: how long y
 
 ```bash
 # partitions, with memory in GB instead of SLURM's MB
+printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
 sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
-  BEGIN { printf "%-18s %5s %14s %6s %10s\n", "PARTITION","NODES","TIMELIMIT","CPUS","MEMORY" }
   { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
     printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
 sacctmgr -np show assoc user=$USER format=Account,Partition,QOS    # what you can use
@@ -361,8 +361,8 @@ So check before you plan:
 ```bash
 # per node, in GB, with a FREE column -- this is the number that decides
 # whether your job can start. Change the partition name to whichever you want.
+printf "%-16s %9s %9s %9s %6s %s\n" NODE TOTAL ALLOC FREE CPUS STATE
 sinfo -h -p standard -N -O "NodeHost:20,Memory:12,AllocMem:12,CPUs:8,StateLong:14" | awk '
-  BEGIN { printf "%-16s %9s %9s %9s %6s %s\n","NODE","TOTAL","ALLOC","FREE","CPUS","STATE" }
   { printf "%-16s %8.0fG %8.0fG %8.0fG %6s %s\n", $1, $2/1024, $3/1024, ($2-$3)/1024, $4, $5 }' \
   | sort -rn -k4 | head
 ```

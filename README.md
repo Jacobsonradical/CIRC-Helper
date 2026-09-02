@@ -175,10 +175,29 @@ printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
 sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
   { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
     printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
-sacctmgr -np show assoc user=$USER format=Account,Partition,QOS
+# ...and now only the ones YOU are allowed to submit to
+echo "### Partitions you are allowed to use ###"
+MINE=$(sacctmgr -np show assoc user=$USER format=QOS | tr -d '|' | tr ',' '\n' | grep . | sort -u | paste -sd,)
+echo "  ($MINE)"
+printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
+sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' -v mine="$MINE" '
+  BEGIN { n=split(mine,a,","); for(i=1;i<=n;i++) ok[a[i]]=1 }
+  { p=$1; sub(/\*$/,"",p); if (!(p in ok)) next
+    m=$5; s=""; if (m ~ /\+$/) { s="+"; sub(/\+$/,"",m) }
+    printf "%-18s %5s %14s %6s %9.0f G%s\n", p,$2,$3,$4, m/1024, s }' | sort -u
 ```
 
-The first shows what exists. The second shows what *you* can submit to, which is a much shorter list. Run the second one first — there is no point planning around a partition you cannot use.
+The first shows every partition on the cluster. The second shows only the ones **you** can submit to, which is a far shorter list — run that one first, because there is no point planning around hardware you cannot reach.
+
+A wrinkle worth knowing: on BlueHive3 your access is granted through **QOS** names rather than the Partition column, which is why the command reads the QOS field. `sacctmgr -np show assoc user=$USER format=Account,Partition,QOS` shows the raw association if you want to see it, and you will notice the Partition field is empty while the QOS field carries the real list.
+
+If a name in your QOS list does not show up in the table, that is usually fine. Some are not compute partitions at all (`fastx` is the GUI service), and some are *hidden* — `sinfo` leaves them out of the default listing, but you can still ask about them directly:
+
+```bash
+sinfo -p reserved -N -O "NodeHost:20,Memory:12,CPUs:8,StateLong:14"
+```
+
+This is often where the cluster stops being confusing and starts being annoying instead: you can see 1 TB and 2 TB nodes sitting in the full list, and simply not be allowed to touch them.
 
 ---
 
@@ -323,7 +342,16 @@ printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
 sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
   { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
     printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
-sacctmgr -np show assoc user=$USER format=Account,Partition,QOS    # what you can use
+# ...and now only the ones YOU are allowed to submit to
+echo "### Partitions you are allowed to use ###"
+MINE=$(sacctmgr -np show assoc user=$USER format=QOS | tr -d '|' | tr ',' '\n' | grep . | sort -u | paste -sd,)
+echo "  ($MINE)"
+printf "%-18s %5s %14s %6s %10s\n" PARTITION NODES TIMELIMIT CPUS MEMORY
+sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' -v mine="$MINE" '
+  BEGIN { n=split(mine,a,","); for(i=1;i<=n;i++) ok[a[i]]=1 }
+  { p=$1; sub(/\*$/,"",p); if (!(p in ok)) next
+    m=$5; s=""; if (m ~ /\+$/) { s="+"; sub(/\+$/,"",m) }
+    printf "%-18s %5s %14s %6s %9.0f G%s\n", p,$2,$3,$4, m/1024, s }' | sort -u
 ```
 
 ### standard vs preempt

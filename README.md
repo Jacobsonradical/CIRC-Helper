@@ -8,6 +8,22 @@ So this is my attempt at that. Everything here is stuff I had to work out the ha
 
 ---
 
+## Contents
+
+- [Register an account](#register-an-account)
+- [Which machine do you connect to?](#which-machine-do-you-connect-to)
+- [The single most important thing: login node vs compute node](#the-single-most-important-thing-login-node-vs-compute-node)
+- [Check your environment before you plan anything](#check-your-environment-before-you-plan-anything)
+- [Getting your files onto the cluster](#getting-your-files-onto-the-cluster)
+- [Python environment](#python-environment)
+- [SLURM: what a partition actually is](#slurm-what-a-partition-actually-is)
+- [How to request resources](#how-to-request-resources)
+- [Example job scripts](#example-job-scripts)
+- [Watching your jobs](#watching-your-jobs)
+- [When things go wrong](#when-things-go-wrong)
+
+---
+
 ### Register an account
 
 https://registration.circ.rochester.edu/account

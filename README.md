@@ -191,13 +191,31 @@ The first shows every partition on the cluster. The second shows only the ones *
 
 A wrinkle worth knowing: on BlueHive3 your access is granted through **QOS** names rather than the Partition column, which is why the command reads the QOS field. `sacctmgr -np show assoc user=$USER format=Account,Partition,QOS` shows the raw association if you want to see it, and you will notice the Partition field is empty while the QOS field carries the real list.
 
-If a name in your QOS list does not show up in the table, that is usually fine. Some are not compute partitions at all (`fastx` is the GUI service), and some are *hidden* — `sinfo` leaves them out of the default listing, but you can still ask about them directly:
+**Not every QOS name is a partition you can submit to.** `fastx` is the GUI service. `reserved` is about *reservations*, not a partition — check before you plan around a name:
 
 ```bash
-sinfo -p reserved -N -O "NodeHost:20,Memory:12,CPUs:8,StateLong:14"
+scontrol show partition reserved     # "Partition reserved not found"
 ```
 
-This is often where the cluster stops being confusing and starts being annoying instead: you can see 1 TB and 2 TB nodes sitting in the full list, and simply not be allowed to touch them.
+### Reservations: nodes that are there but not for you
+
+A reservation holds specific nodes for specific accounts, usually for a class or a project, often for weeks. Those nodes still appear in `sinfo` and still count towards a partition's node total, but you cannot have them.
+
+```bash
+scontrol show reservations
+```
+
+```
+ReservationName=somelab_20260830  StartTime=2026-08-30  EndTime=2026-09-29
+   Nodes=bhd[0093,0095],bhdrb6x0170  NodeCnt=3  CoreCnt=208
+   Accounts=circ_staff,somelab  State=ACTIVE
+```
+
+Look at `Accounts`. If your account is not listed, that hardware is unavailable to you for the whole window, no matter what `sinfo` implies.
+
+This is worth checking when a partition seems mysteriously busy. When I looked, five reservations were holding nine nodes for a month — **two of them in `standard`**, which has only fifteen to begin with. Nothing in the ordinary node counts tells you that.
+
+And it is often where the cluster stops being confusing and starts being annoying instead: you can see 1 TB and 2 TB nodes in the full list, and simply not be allowed to touch them.
 
 ---
 

@@ -170,7 +170,11 @@ Home is shared across every node, so a virtual environment you install from one 
 ### What hardware exists, and what am I allowed to use?
 
 ```bash
-sinfo -o "%20P %6D %14l %6c %10m"                       # partitions: nodes, time limit, cores, memory
+# partitions, with memory in GB instead of SLURM's MB
+sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
+  BEGIN { printf "%-18s %5s %14s %6s %10s\n", "PARTITION","NODES","TIMELIMIT","CPUS","MEMORY" }
+  { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
+    printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
 sacctmgr -np show assoc user=$USER format=Account,Partition,QOS
 ```
 
@@ -314,7 +318,11 @@ Every example online tells you to put `-p standard` or `-p gpu` in your script a
 A **partition** is a named group of compute nodes with its own rules: how long you may run, who is allowed in, and whether somebody can take the machine back off you mid-job. It is **not** a hardware description. Two partitions can hold identical machines and behave completely differently.
 
 ```bash
-sinfo -o "%20P %6D %14l %6c %10m"     # everything that exists
+# partitions, with memory in GB instead of SLURM's MB
+sinfo -h -o "%P|%D|%l|%c|%m" | awk -F'|' '
+  BEGIN { printf "%-18s %5s %14s %6s %10s\n", "PARTITION","NODES","TIMELIMIT","CPUS","MEMORY" }
+  { m=$5; p=""; if (m ~ /\+$/) { p="+"; sub(/\+$/,"",m) }
+    printf "%-18s %5s %14s %6s %9.0f G%s\n", $1,$2,$3,$4, m/1024, p }' | sort -u
 sacctmgr -np show assoc user=$USER format=Account,Partition,QOS    # what you can use
 ```
 
@@ -351,11 +359,19 @@ That is 250 GB on *each* of four machines, not 1 TB spread across them. RAM live
 
 So check before you plan:
 ```bash
-sinfo -p standard -N -O "NodeHost:14,Memory:10,AllocMem:11,CPUs:6,StateLong:12" | sort -rn -k2 | head
-sinfo -p preempt  -N -O "NodeHost:14,Memory:10,AllocMem:11,CPUs:6,StateLong:12" | sort -rn -k2 | head
+# per node, in GB, with a FREE column -- this is the number that decides
+# whether your job can start. Change the partition name to whichever you want.
+sinfo -h -p standard -N -O "NodeHost:20,Memory:12,AllocMem:12,CPUs:8,StateLong:14" | awk '
+  BEGIN { printf "%-16s %9s %9s %9s %6s %s\n","NODE","TOTAL","ALLOC","FREE","CPUS","STATE" }
+  { printf "%-16s %8.0fG %8.0fG %8.0fG %6s %s\n", $1, $2/1024, $3/1024, ($2-$3)/1024, $4, $5 }' \
+  | sort -rn -k4 | head
 ```
 
-`Memory` is the node's total in MB. `AllocMem` is what SLURM has already promised to other jobs. **`Memory - AllocMem` is what you could actually get right now.** Ignore the `FreeMem` column — that is OS-level free memory including cache, and it will happily tell you a node has 900 GB free when SLURM has already committed all of it.
+`TOTAL` is the node's memory, `ALLOC` is what SLURM has already promised to other jobs, and **`FREE` is what you could actually get right now** — that is the column to compare your `--mem` against. Sorted so the emptiest node is at the top.
+
+The `awk` is only there to divide by 1024 and work out `FREE`, because `sinfo` reports everything in MB and has no option to do either.
+
+If you drop the `awk` and read the raw `sinfo` output, ignore its `FreeMem` column — that is OS-level free memory including cache, and it will happily claim a node has 900 GB free when SLURM has already committed all of it. `Memory - AllocMem` is the real answer.
 
 Also watch the state: a node marked `allocated` has **no free CPUs**, so it cannot take your job even if its memory looks free.
 
